@@ -8,9 +8,14 @@ services:
     environment: 
       - PORT=3000 
   mongo:
-    image: mongo 
+    image: mongo
+    restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=eyeamkd
-      - MONGO_INTIDB_ROOT_PASSWORD=edo-okati 
+      - MONGO_INTIDB_ROOT_PASSWORD=edo-okati
+    volumes:
+      - mongo-db:/data/db
+volumes: 
+  mongo-db:
 
     
