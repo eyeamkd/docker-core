@@ -1,11 +1,10 @@
-version: "3"
-services: 
-  node-app: 
-    build: . 
+# This file is used for the shared configuration between the production and the development environments 
+version: "3" 
+services:
+  node-app:
+    build: .  
     ports:
-      - "3000:3000"  
-    volumes:
-      - ./:/app:ro 
-      - /app/node_modules  
-    environment:
+      - "3000:3000" 
+    environment: 
       - PORT=3000
+    
