@@ -7,7 +7,15 @@ services:
         NODE_ENV: development 
     volumes:
       - ./:/app
-      - /app/node_modules
+      - /app/node_modules 
     environment:
-      - NODE_ENV=development
-    command: npm run dev  
+      - NODE_ENV=development 
+      - MONGO_USER=eyeamkd
+      - MONGO_PASSWORD=edo-okati 
+      - MONGO_PORT=27017    
+    command: npm run dev 
+  mongo:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=eyeamkd
+      - MONGO_INITDB_ROOT_PASSWORD=edo-okati  
+  
