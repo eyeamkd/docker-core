@@ -18,4 +18,3 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=eyeamkd
       - MONGO_INITDB_ROOT_PASSWORD=edo-okati  
-  
