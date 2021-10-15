@@ -2,6 +2,7 @@ FROM node:15
 WORKDIR /app 
 COPY package.json /app/
 RUN npm install 
-COPY . /app/ 
-EXPOSE 3000
+COPY . /app/  
+ENV PORT=3000
+EXPOSE ${PORT}
 CMD ["npm","run","dev"] 
