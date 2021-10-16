@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); 
+const cors = require("cors"); 
 const {
   MONGO_PASSWORD,
   MONGO_PORT,
@@ -11,12 +12,13 @@ const {
 const { redisStore, redisClient } = require("./middleware/redis");
 
 const postRouter = require("./routes/postRoutes");
-const userRouter = require("./routes/userRoutes");
+const userRouter = require("./routes/userRoutes"); 
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json()); 
 
+app.use(cors());
 const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`; 
 
 const numberOfTries = 5;
@@ -35,7 +37,7 @@ const connectWithRetry = () => {
 };
 connectWithRetry();
 const port = process.env.PORT || 3000;
-
+app.enable("trust proxy");
 app.use(session( 
     { store: new redisStore({ client: redisClient }),
         secret:SESSION_SECRET,
@@ -50,7 +52,8 @@ app.use(session(
     ) 
     );
 
-app.get("/", (req, res) => {
+app.get("/api/v1", (req, res) => { 
+console.log("Node instance running");
   res.send("<h1>Hello! Kunal Dubey Here checking production status </h1>");
 });
 
