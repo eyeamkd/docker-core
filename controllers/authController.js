@@ -5,7 +5,7 @@ const salt = bcrypt.genSaltSync(10);
 
 exports.signUp = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password } = req.body; 
     if (!validate(username, password))
       throw new Error("Invalid Username or Password");
     hash = bcrypt.hashSync(password, salt);
@@ -31,7 +31,8 @@ exports.signIn = async (req, res) => {
     const { username, password } = req.body;
     const hash = await getHashForUsername(username);
     if (hash == null) throw new Error("Invalid Username or Password");
-    if (bcrypt.compareSync(password, hash)) {
+    if (bcrypt.compareSync(password, hash)) { 
+        req.session.user = username
       res.status(200).json({
         status: "Signin success",
       });
