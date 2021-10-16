@@ -21,6 +21,8 @@ app.use(express.json());
 app.use(cors());
 const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`; 
 
+console.log("Mongo url is",mongoURL);
+
 const numberOfTries = 5;
 let initialTries = 0;
 const connectWithRetry = () => {
