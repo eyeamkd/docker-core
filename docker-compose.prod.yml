@@ -3,7 +3,14 @@ services:
   nginx:
     ports:
       - "80:80"
-  node-app:
+  node-app: 
+    deploy:
+      replicas:
+      restart_policy:
+        condition: any 
+      update_config:
+        parallelism: 2
+        delay: 15s
     build: 
       context: .
       args:
@@ -13,7 +20,8 @@ services:
       - MONGO_USER=${MONGO_USER}
       - MONGO_PASSWORD=${MONGO_PASSWORD} 
       - SESSION_SECRET=${SESSION_SECRET}    
-    command: node index.js 
+    command: node index.js
+
   mongo:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
